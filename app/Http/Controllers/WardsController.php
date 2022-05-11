@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wards;
 use App\Http\Requests\StoreWardsRequest;
 use App\Http\Requests\UpdateWardsRequest;
-use App\Models\LGAs;
+use App\Models\Lga;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
@@ -20,7 +20,7 @@ class WardsController extends Controller
     {
 
         $wards = Wards::paginate(10); // paginate
-        $lgas = LGAs::orderBy('name', 'ASC')->get();
+        $lgas = Lga::orderBy('name', 'ASC')->get();
 
         return view('pages.wards.index', compact('wards', 'lgas'));
     }
@@ -67,7 +67,7 @@ class WardsController extends Controller
 
         $update = Wards::find($id)->update([
             'name' => $request->name,
-            'lga_id' => $request->state_id
+            'lga_id' => $request->lga_id
 
         ]);
 
@@ -76,7 +76,7 @@ class WardsController extends Controller
 
     public function Delete($id)
     {
-        $delete = LGAs::find($id)->delete();
+        $delete = Wards::find($id)->delete();
         return Redirect()->back()->with('success', 'Ward Deleted Successfully');
     }
 }

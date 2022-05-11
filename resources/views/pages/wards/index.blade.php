@@ -74,9 +74,9 @@
                         <form action="{{ route('store.wards') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="lgas" class="form-label">Ward Name:</label>
-                                <input type="text" name="name" class="form-control" id="lgas"
-                                    aria-describedby="lgas">
+                                <label for="wards" class="form-label">Ward Name:</label>
+                                <input type="text" name="name" class="form-control" id="wards"
+                                    aria-describedby="wards">
                                 @error('name')
                                     <span class="text-danger"> {{ $message }}</span>
                                 @enderror
