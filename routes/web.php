@@ -41,7 +41,7 @@ Route::middleware([
 });
 
 
-// Route::get('/citizen/all', [CitizensController::class, 'AllCat'])->name('all.category');
+Route::get('/citizen/all', [CitizensController::class, 'AllCat'])->name('citizens');
 
 Route::post('/citizen/add', [CitizensController::class, 'AddCitizens'])->name('store.citizens');
 

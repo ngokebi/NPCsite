@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2022 at 02:39 PM
+-- Generation Time: May 11, 2022 at 03:07 PM
 -- Server version: 8.0.29
 -- PHP Version: 7.4.29
 
@@ -37,6 +37,13 @@ CREATE TABLE `citizens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `citizens`
+--
+
+INSERT INTO `citizens` (`id`, `name`, `gender`, `address`, `phone`, `ward_id`, `created_at`, `updated_at`) VALUES
+(1, 'Ikeaba Ngozichukwuka I', 'male', '57 Palm Avenue,Mushin', '8141131223', 1, '2022-05-11 12:06:12', '2022-05-11 12:06:12');
 
 -- --------------------------------------------------------
 
@@ -153,7 +160,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('EcQriYM35tD8PKutxk5IiCQSkTyokJXX4GCccMWK', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVzlXb0lmWjdEOTFyeUV0U3ZQWURjZ3N3ZUJkN01ZQXRSN2p5cEhqTiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93YXJkcy9hbGwiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJFQzbmZzUUtqeEd3WW8yMGhRWVpLcU9SS1pWTXludVdiby82aUE1QkVXRm56SU9IRkFzV1NpIjt9', 1652272721);
+('EcQriYM35tD8PKutxk5IiCQSkTyokJXX4GCccMWK', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVzlXb0lmWjdEOTFyeUV0U3ZQWURjZ3N3ZUJkN01ZQXRSN2p5cEhqTiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaXRpemVuL2FsbCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVDNuZnNRS2p4R3dZbzIwaFFZWktxT1JLWlZNeW51V2JvLzZpQTVCRVdGbnpJT0hGQXNXU2kiO30=', 1652274404);
 
 -- --------------------------------------------------------
 
@@ -217,6 +224,13 @@ CREATE TABLE `wards` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wards`
+--
+
+INSERT INTO `wards` (`id`, `name`, `lga_id`, `created_at`, `updated_at`) VALUES
+(1, 'Ward 1', 1, '2022-05-11 11:40:55', '2022-05-11 11:40:55');
 
 --
 -- Indexes for dumped tables
@@ -296,7 +310,7 @@ ALTER TABLE `wards`
 -- AUTO_INCREMENT for table `citizens`
 --
 ALTER TABLE `citizens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -338,7 +352,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wards`
 --
 ALTER TABLE `wards`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

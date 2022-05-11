@@ -36,7 +36,7 @@
                                     @foreach ($wards as $ward)
                                         <tr>
                                             <td scope="row">{{ $wards->firstItem() + $loop->index }}</td>
-                                            <td>{{$ward['lgas']['name']}}</td>
+                                            <td>{{$ward->name}}</td>
                                             <td>{{ $ward->name }}</td>
                                             <td>
                                                 @if ($ward->created_at == null)
