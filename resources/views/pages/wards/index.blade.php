@@ -25,8 +25,8 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col"> Name </th>
-                                        <th scope="col">Local Government Area </th>
+                                        <th scope="col"> Local Government Area </th>
+                                        <th scope="col">Ward </th>
                                         <th scope="col">Created At</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -35,9 +35,9 @@
                                     {{-- @php($i = 1) --}}
                                     @foreach ($wards as $ward)
                                         <tr>
-                                            <th scope="row">{{ $lgas->firstItem() + $loop->index }}</th>
-                                            <th>{{$ward['states']['name']}}</th>
-                                            <td>{{ $lgas->name }}</td>
+                                            <td scope="row">{{ $wards->firstItem() + $loop->index }}</td>
+                                            <td>{{$ward['lgas']['name']}}</td>
+                                            <td>{{ $ward->name }}</td>
                                             <td>
                                                 @if ($ward->created_at == null)
                                                     <span class="text-danger"> No Date Set</span>

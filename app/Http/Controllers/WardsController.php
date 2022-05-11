@@ -31,7 +31,7 @@ class WardsController extends Controller
         $validated = $request->validate(
             [
                 'name' => 'required|unique:wards|max:255|min:3',
-                'lga_id' => 'required|unique:lgas'
+                'lga_id' => 'required|unique:wards'
 
             ],
             [
