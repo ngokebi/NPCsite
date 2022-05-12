@@ -21,6 +21,7 @@
                         <div class="card-body">
                             <form action="{{ url('lgas/update/' . $edit_lgas->id) }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $edit_lgas->id }}">
                                 <div class="mb-3">
                                     <label for="lgas" class="form-label"> Local Government Area:</label>
                                     <input type="text" name="name" class="form-control" id="lgas"

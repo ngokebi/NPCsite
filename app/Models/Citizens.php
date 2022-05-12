@@ -19,6 +19,13 @@ class Citizens extends Model
         'lga_id'
     ];
 
+    public function wards() {
+        return $this->belongsTo(Wards::class, 'ward_id', 'id');
+    }
+
+    public function lgas() {
+        return $this->belongsTo(Lga::class, 'lga_id', 'id');
+    }
 
     public function states() {
         return $this->belongsTo(States::class, 'state_id', 'id');

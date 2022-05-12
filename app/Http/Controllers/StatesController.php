@@ -30,7 +30,7 @@ class StatesController extends Controller
     }
 
 
-    public function AddCitizens(Request $request)
+    public function AddStates(Request $request)
     {
         $validated = $request->validate(
             [
@@ -54,7 +54,7 @@ class StatesController extends Controller
     }
 
 
-    public function EditCitizens($id)
+    public function EditStates($id)
     {
 
         $states = States::find($id);
@@ -63,7 +63,7 @@ class StatesController extends Controller
         return view('pages.states.edit', compact('states'));
     }
 
-    public function UpdateCitizens(Request $request, $id)
+    public function UpdateStates(Request $request, $id)
     {
 
         $validated = $request->validate(

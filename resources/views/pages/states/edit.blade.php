@@ -21,6 +21,7 @@
                         <div class="card-body">
                             <form action="{{ url('states/update/' . $states->id) }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $states->id }}">
                                 <div class="mb-3">
                                     <label for="state" class="form-label"> State:</label>
                                     <input type="text" name="name" class="form-control"

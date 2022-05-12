@@ -41,15 +41,15 @@ Route::middleware([
 });
 
 
-Route::get('/citizen/all', [CitizensController::class, 'AllCitizens'])->name('citizens');
+Route::get('/citizens/all', [CitizensController::class, 'AllCitizens'])->name('citizens');
 
-Route::post('/citizen/add', [CitizensController::class, 'AddCitizens'])->name('store.citizens');
+Route::post('/citizens/add', [CitizensController::class, 'AddCitizens'])->name('store.citizens');
 
-Route::get('/citizen/edit/{id}', [CitizensController::class, 'EditCitizens']);
+Route::get('/citizens/edit/{id}', [CitizensController::class, 'EditCitizens']);
 
-Route::post('/citizen/update/{id}', [CitizensController::class, 'UpdateCitizens']);;
+Route::post('/citizens/update/{id}', [CitizensController::class, 'UpdateCitizens']);;
 
-Route::get('delete/citizen/{id}', [CitizensController::class, 'Delete']);
+Route::get('delete/citizens/{id}', [CitizensController::class, 'Delete']);
 
 
 
@@ -59,9 +59,9 @@ Route::get('/states/all', [StatesController::class, 'AllStates'])->name('states'
 
 Route::post('/states/add', [StatesController::class, 'AddCitizens'])->name('store.states');
 
-Route::get('/states/edit/{id}', [StatesController::class, 'EditCitizens']);
+Route::get('/states/edit/{id}', [StatesController::class, 'EditStates']);
 
-Route::post('/states/update/{id}', [StatesController::class, 'UpdateCitizens']);
+Route::post('/states/update/{id}', [StatesController::class, 'UpdateStates']);
 
 Route::get('delete/states/{id}', [StatesController::class, 'Delete']);
 

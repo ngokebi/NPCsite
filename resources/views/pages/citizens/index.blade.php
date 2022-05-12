@@ -45,6 +45,8 @@
                                             <td>{{ $citizen->gender }}</td>
                                             <td>{{ $citizen->address }}</td>
                                             <td>{{ $citizen->phone }}</td>
+                                            <td>{{ $citizen['states']['name'] }}</td>
+                                            <td>{{ $citizen['lgas']['name'] }}</td>
                                             <td>{{ $citizen['wards']['name'] }}</td>
                                             {{-- <td>
                                                 @if ($citizen->created_at == null)
@@ -92,8 +94,8 @@
                                 <label for="gender" class="form-label">Gender:</label>
                                 <select name="gender" class="form-control">
                                     <option value="" selected="" disabled="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                                 @error('gender')
                                     <span class="text-danger"> {{ $message }} </span>
@@ -202,7 +204,7 @@
             var lga_id = $(this).val();
             if (lga_id) {
                 $.ajax({
-                    url: "{{ url('/wards/lgas/ajax') }}/" + lga_id,
+                    url: "{{ url('/wards/wards/ajax') }}/" + lga_id,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {

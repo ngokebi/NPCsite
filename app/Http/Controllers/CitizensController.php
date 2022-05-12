@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Citizens;
 use App\Http\Requests\StoreCitizensRequest;
 use App\Http\Requests\UpdateCitizensRequest;
+use App\Models\Lga;
 use App\Models\States;
 use App\Models\Wards;
 use Illuminate\Http\Request;
@@ -63,6 +64,8 @@ class CitizensController extends Controller
         $citizens->address = $request->address;
         $citizens->phone = $request->phone;
         $citizens->ward_id = $request->ward_id;
+        $citizens->state_id = $request->state_id;
+        $citizens->lga_id = $request->lga_id;
 
         $citizens->save();
 
@@ -71,4 +74,20 @@ class CitizensController extends Controller
     }
 
 
+    public function EditCitizens($id)
+    {
+        $lgas = Lga::orderBy('name', 'ASC')->get();
+        $states = States::orderBy('name', 'ASC')->get();
+        $wards = Wards::orderBy('name', 'ASC')->get();
+        $edit_citizens = Citizens::findorFail($id);
+
+
+        return view('pages.citizens.edit', compact('edit_citizens', 'states', 'lgas', 'wards'));
+    }
+
+    public function Delete($id)
+    {
+        $delete = Citizens::find($id)->delete();
+        return Redirect()->back()->with('success', 'Citizen\'s Record was Deleted Successfully');
+    }
 }

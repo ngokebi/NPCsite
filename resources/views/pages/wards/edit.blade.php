@@ -4,7 +4,7 @@
             Edit Ward <b></b>
         </h2>
     </x-slot>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="py-12">
         <div class="container">
             <div class="row">
@@ -21,6 +21,7 @@
                         <div class="card-body">
                             <form action="{{ url('wards/update/' . $edit_wards->id) }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $edit_wards->id }}">
                                 <div class="mb-3">
                                     <label for="wards" class="form-label"> Wards:</label>
                                     <input type="text" name="name" class="form-control" id="wards"
@@ -71,4 +72,29 @@
         </div>
     </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="state_id"]').on('change', function() {
+                var state_id = $(this).val();
+                if (state_id) {
+                    $.ajax({
+                        url: "{{ url('/wards/lgas/ajax') }}/" + state_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            var d = $('select[name="lga_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="lga_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
 </x-app-layout>
