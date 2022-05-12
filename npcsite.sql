@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2022 at 03:07 PM
+-- Generation Time: May 12, 2022 at 03:53 PM
 -- Server version: 8.0.29
 -- PHP Version: 7.4.29
 
@@ -33,6 +33,8 @@ CREATE TABLE `citizens` (
   `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state_id` int NOT NULL,
+  `lga_id` int NOT NULL,
   `ward_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -42,8 +44,8 @@ CREATE TABLE `citizens` (
 -- Dumping data for table `citizens`
 --
 
-INSERT INTO `citizens` (`id`, `name`, `gender`, `address`, `phone`, `ward_id`, `created_at`, `updated_at`) VALUES
-(1, 'Ikeaba Ngozichukwuka I', 'male', '57 Palm Avenue,Mushin', '8141131223', 1, '2022-05-11 12:06:12', '2022-05-11 12:06:12');
+INSERT INTO `citizens` (`id`, `name`, `gender`, `address`, `phone`, `state_id`, `lga_id`, `ward_id`, `created_at`, `updated_at`) VALUES
+(3, 'Ikeaba Ngozichukwuka I', 'male', '57 Palm Avenue,Mushin', '08141131223', 1, 1, 1, '2022-05-12 11:07:19', '2022-05-12 11:07:19');
 
 -- --------------------------------------------------------
 
@@ -80,7 +82,11 @@ CREATE TABLE `lgas` (
 --
 
 INSERT INTO `lgas` (`id`, `name`, `state_id`, `created_at`, `updated_at`) VALUES
-(1, 'Mushin', 1, '2022-05-11 11:38:33', '2022-05-11 11:38:33');
+(1, 'Mushin', 1, '2022-05-12 09:32:25', '2022-05-12 09:32:25'),
+(2, 'Alimosho', 1, '2022-05-12 09:42:37', '2022-05-12 09:42:37'),
+(3, 'Surulere', 1, '2022-05-12 09:42:52', '2022-05-12 09:42:52'),
+(4, 'Ibadan North', 2, '2022-05-12 09:47:10', '2022-05-12 09:47:10'),
+(5, 'Egbeda', 2, '2022-05-12 09:47:22', '2022-05-12 09:47:22');
 
 -- --------------------------------------------------------
 
@@ -160,7 +166,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('EcQriYM35tD8PKutxk5IiCQSkTyokJXX4GCccMWK', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVzlXb0lmWjdEOTFyeUV0U3ZQWURjZ3N3ZUJkN01ZQXRSN2p5cEhqTiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaXRpemVuL2FsbCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkVDNuZnNRS2p4R3dZbzIwaFFZWktxT1JLWlZNeW51V2JvLzZpQTVCRVdGbnpJT0hGQXNXU2kiO30=', 1652274404);
+('4fTelAtbdHfuygHMayE2OiAYq8IfiTvaeGs4qj3G', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibGZWOG1TOFhQOHRtaUtldGlUS0hDV1ZiZWFrZFhSM09CTm4yYlRSVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaXRpemVucy9hbGwiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJFhNdEhZb296VG5XWDM1MUtqbC5nY3VVVGJBQVFGWmdwdGN6VzFWN2NHaEdOenlTbDRXYlFhIjt9', 1652363562);
 
 -- --------------------------------------------------------
 
@@ -180,7 +186,8 @@ CREATE TABLE `states` (
 --
 
 INSERT INTO `states` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Lagos State', '2022-05-11 11:38:27', '2022-05-11 11:38:27');
+(1, 'Lagos State', '2022-05-12 09:32:19', '2022-05-12 09:32:19'),
+(2, 'Oyo State', '2022-05-12 09:44:10', '2022-05-12 09:44:10');
 
 -- --------------------------------------------------------
 
@@ -209,7 +216,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Ikeaba Ngozichukwuka I', 'kebidegozi@gmail.com', NULL, '$2y$10$T3nfsQKjxGwYo20hQYZKqORKZVMynuWbo/6iA5BEWFnzIOHFAsWSi', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-11 11:38:21', '2022-05-11 11:38:21');
+(1, 'Ikeaba Ngozichukwuka I', 'kebidegozi@gmail.com', NULL, '$2y$10$XMtHYoozTnWX351Kjl.gcuUTbAAQFZgptczW1V7cGhGNzySl4WbQa', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-12 09:32:13', '2022-05-12 09:32:13');
 
 -- --------------------------------------------------------
 
@@ -221,6 +228,7 @@ CREATE TABLE `wards` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lga_id` int NOT NULL,
+  `state_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -229,8 +237,9 @@ CREATE TABLE `wards` (
 -- Dumping data for table `wards`
 --
 
-INSERT INTO `wards` (`id`, `name`, `lga_id`, `created_at`, `updated_at`) VALUES
-(1, 'Ward 1', 1, '2022-05-11 11:40:55', '2022-05-11 11:40:55');
+INSERT INTO `wards` (`id`, `name`, `lga_id`, `state_id`, `created_at`, `updated_at`) VALUES
+(1, 'Alakara', 1, 1, '2022-05-12 09:50:40', '2022-05-12 09:50:40'),
+(2, 'Babalosa', 1, 1, '2022-05-12 10:57:21', '2022-05-12 10:57:21');
 
 --
 -- Indexes for dumped tables
@@ -310,7 +319,7 @@ ALTER TABLE `wards`
 -- AUTO_INCREMENT for table `citizens`
 --
 ALTER TABLE `citizens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -322,7 +331,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `lgas`
 --
 ALTER TABLE `lgas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -340,7 +349,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -352,7 +361,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wards`
 --
 ALTER TABLE `wards`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
