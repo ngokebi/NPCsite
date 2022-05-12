@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Citizens;
 use App\Http\Requests\StoreCitizensRequest;
 use App\Http\Requests\UpdateCitizensRequest;
+use App\Models\States;
 use App\Models\Wards;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -19,30 +20,40 @@ class CitizensController extends Controller
         $this->middleware('auth');
     }
 
-    public function AllCat()
+    public function AllCitizens()
     {
 
-        // $categories = Category::all();  latest()->get() - to order by the latest  Eloquent
-
-        $citizens = Citizens::paginate(5); // paginate
+        $citizens = Citizens::paginate(5);
         $wards = Wards::orderBy('name', 'ASC')->get();
+        $states = States::orderBy('name', 'ASC')->get();
 
-        return view('pages.citizens.index', compact('citizens', 'wards'));
+        return view('pages.citizens.index', compact('citizens', 'states'));
     }
 
     public function AddCitizens(Request $request)
     {
-        // $validated = $request->validate(
-        //     [
-        //         'category_name' => 'required|unique:categories|max:255',
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:citizens',
+                'gender' => 'required',
+                'address' => 'required',
+                'phone' => 'required',
+                'ward_id' => 'required',
+                'lga_id' => 'required',
+                'state_id' => 'required',
 
-        //     ],
-        //     [
-        //         'category_name.required' => 'Please Input Category Name',
-        //         'category_name.max' => 'Category Name Must be Less than 255 Characters',
+            ],
+            [
+                'name.required' => 'Please Input Name',
+                'gender.required' => 'Please Input Gender',
+                'address.required' => 'Please Input Address',
+                'phone.required' => 'Please Input Phone Number',
+                'ward_id.required' => 'Please Input Ward',
+                'lga_id.required' => 'Please Input Local Government',
+                'state_id.required' => 'Please Input State',
 
-        //     ]
-        // );
+            ]
+        );
 
 
         $citizens = new Citizens();
@@ -52,10 +63,11 @@ class CitizensController extends Controller
         $citizens->address = $request->address;
         $citizens->phone = $request->phone;
         $citizens->ward_id = $request->ward_id;
+
         $citizens->save();
 
 
-        return Redirect()->back()->with('success', 'Category Inserted Successfully');
+        return Redirect()->back()->with('success', 'Citizen Registered Successfully');
     }
 
 

@@ -50,7 +50,7 @@ class StatesController extends Controller
         $state->name = $request->name;
         $state->save();
 
-        return Redirect()->back()->with('success', 'State Inserted Successfully');
+        return Redirect()->back()->with('success', 'State Created Successfully');
     }
 
 
@@ -65,6 +65,19 @@ class StatesController extends Controller
 
     public function UpdateCitizens(Request $request, $id)
     {
+
+        $validated = $request->validate(
+            [
+                'name' => 'required|max:255|min:3',
+
+            ],
+            [
+                'name.required' => 'Please Input State Name',
+                'name.max' => 'Category Name Must be Less than 255 Characters',
+                'name.min' => 'Category Name Must be More than 3 Characters',
+
+            ]
+        );
 
         $update = States::find($id)->update([
             'name' => $request->name,

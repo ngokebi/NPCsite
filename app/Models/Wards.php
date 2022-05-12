@@ -11,10 +11,15 @@ class Wards extends Model
 
     protected $fillable = [
         'name',
-        'lga_id'
+        'lga_id',
+        'state_id'
     ];
 
     public function lgas() {
         return $this->belongsTo(Lga::class, 'lga_id', 'id');
+    }
+
+    public function states() {
+        return $this->belongsTo(States::class, 'state_id', 'id');
     }
 }

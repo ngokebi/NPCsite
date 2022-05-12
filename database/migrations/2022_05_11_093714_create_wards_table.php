@@ -17,6 +17,7 @@ class CreateWardsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('lga_id');
+            $table->integer('state_id');
             $table->timestamps();
         });
     }

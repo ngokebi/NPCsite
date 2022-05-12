@@ -41,19 +41,15 @@ Route::middleware([
 });
 
 
-Route::get('/citizen/all', [CitizensController::class, 'AllCat'])->name('citizens');
+Route::get('/citizen/all', [CitizensController::class, 'AllCitizens'])->name('citizens');
 
 Route::post('/citizen/add', [CitizensController::class, 'AddCitizens'])->name('store.citizens');
 
-Route::get('/category/edit/{id}', [CategoryController::class, 'EditCat']);
+Route::get('/citizen/edit/{id}', [CitizensController::class, 'EditCitizens']);
 
-Route::post('/category/update/{id}', [CategoryController::class, 'UpdateCat']);
+Route::post('/citizen/update/{id}', [CitizensController::class, 'UpdateCitizens']);;
 
-Route::get('softdelete/category/{id}', [CategoryController::class, 'SoftDelete']);
-
-Route::get('category/restore/{id}', [CategoryController::class, 'Restore']);
-
-Route::get('pdelete/category/{id}', [CategoryController::class, 'PDelete']);
+Route::get('delete/citizen/{id}', [CitizensController::class, 'Delete']);
 
 
 
@@ -95,4 +91,6 @@ Route::post('/wards/update/{id}', [WardsController::class, 'UpdateWards']);
 
 Route::get('delete/wards/{id}', [WardsController::class, 'Delete']);
 
+Route::get('wards/lgas/ajax/{state_id}', [WardsController::class, 'Get_Lgas']);
 
+Route::get('wards/wards/ajax/{lag_id}', [WardsController::class, 'Get_Wards']);

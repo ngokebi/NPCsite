@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Edit State <b></b>
+            Update State <b></b>
         </h2>
     </x-slot>
 
@@ -17,12 +17,12 @@
                 @endif
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header"> Edit State </div>
+                        <div class="card-header"> Update State </div>
                         <div class="card-body">
                             <form action="{{ url('states/update/' . $states->id) }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="state" class="form-label">Update State:</label>
+                                    <label for="state" class="form-label"> State:</label>
                                     <input type="text" name="name" class="form-control"
                                         id="state" aria-describedby="state"
                                         value="{{ $states->name }}">

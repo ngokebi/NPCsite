@@ -14,11 +14,14 @@ class Citizens extends Model
         'gender',
         'address',
         'phone',
-        'ward_id'
+        'ward_id',
+        'state_id',
+        'lga_id'
     ];
 
-    public function wards() {
-        return $this->belongsTo(Wards::class, 'ward_id', 'id');
+
+    public function states() {
+        return $this->belongsTo(States::class, 'state_id', 'id');
     }
 
 }

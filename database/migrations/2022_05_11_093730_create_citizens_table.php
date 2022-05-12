@@ -19,6 +19,8 @@ class CreateCitizensTable extends Migration
             $table->string('gender');
             $table->string('address');
             $table->string('phone');
+            $table->integer('state_id');
+            $table->integer('lga_id');
             $table->integer('ward_id');
             $table->timestamps();
         });

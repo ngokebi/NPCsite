@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 class LgaController extends Controller
 {
@@ -34,11 +35,11 @@ class LgaController extends Controller
         $validated = $request->validate(
             [
                 'name' => 'required|unique:lgas|max:255|min:3',
-                'state_id' => 'required|unique:lgas'
+                'state_id' => 'required'
 
             ],
             [
-                'name.required' => 'Please Input State Name',
+                'name.required' => 'Please Input Local Governmnet Name',
                 'name.max' => 'Category Name Must be Less than 255 Characters',
                 'name.min' => 'Category Name Must be More than 3 Characters',
                 'state_id.required' => 'Please Input State Name',
@@ -53,27 +54,37 @@ class LgaController extends Controller
         $lgas->state_id = $request->state_id;
         $lgas->save();
 
-        return Redirect()->back()->with('success', 'Local Government Inserted Successfully');
+        return Redirect()->back()->with('success', 'Local Government Created Successfully');
     }
 
-    // public function Get_Lgas($state_id)
-    // {
-    //     $subcat = LGAs::where('state_id', $state_id)->orderBy('name', 'ASC')->get();
-
-    //     return json_encode($subcat);
-    // }
 
     public function EditLgas($id)
     {
+        $states = States::orderBy('name', 'ASC')->get();
+        $edit_lgas = Lga::find($id);
 
-        $lgas = Lga::find($id);
 
-
-        return view('pages.lgas.edit', compact('lgas'));
+        return view('pages.lgas.edit', compact('edit_lgas', 'states'));
     }
 
     public function UpdateLgas(Request $request, $id)
     {
+
+        $validated = $request->validate(
+            [
+                'name' => 'required|max:255|min:3',
+                'state_id' => 'required'
+
+            ],
+            [
+                'name.required' => 'Please Input Local Governmnet Name',
+                'name.max' => 'Category Name Must be Less than 255 Characters',
+                'name.min' => 'Category Name Must be More than 3 Characters',
+                'state_id.required' => 'Please Input State Name',
+
+
+            ]
+        );
 
         $update = Lga::find($id)->update([
             'name' => $request->name,

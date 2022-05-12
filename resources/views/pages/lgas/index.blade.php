@@ -35,8 +35,8 @@
                                     {{-- @php($i = 1) --}}
                                     @foreach ($lgas as $lga)
                                         <tr>
-                                            <th scope="row">{{ $lgas->firstItem() + $loop->index }}</th>
-                                            <th>{{$lga['states']['name']}}</th>
+                                            <td scope="row">{{ $lgas->firstItem() + $loop->index }}</td>
+                                            <td>{{$lga['states']['name']}}</td>
                                             <td>{{ $lga->name }}</td>
                                             <td>
                                                 @if ($lga->created_at == null)
@@ -73,15 +73,8 @@
                     <div class="card-body">
                         <form action="{{ route('store.lgas') }}" method="POST">
                             @csrf
-                            <div class="mb-3">
-                                <label for="lgas" class="form-label">Local Government Name:</label>
-                                <input type="text" name="name" class="form-control" id="lgas"
-                                    aria-describedby="lgas">
-                                @error('name')
-                                    <span class="text-danger"> {{ $message }}</span>
-                                @enderror
-                                <br>
                                 <div class="controls">
+                                    <label for="state_id" class="form-label">State:</label>
                                     <select name="state_id" class="form-control">
                                         <option value="" selected="" disabled="">Select State</option>
                                         @foreach ($states as $state)
@@ -92,8 +85,16 @@
                                         <span class="text-danger"> {{ $message }} </span>
                                     @enderror
                                 </div>
+                                <br>
+                                <div class="mb-3">
+                                    <label for="lgas" class="form-label">Local Government Name:</label>
+                                    <input type="text" name="name" class="form-control" id="lgas"
+                                        aria-describedby="lgas">
+                                    @error('name')
+                                        <span class="text-danger"> {{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                            </div>
                             <button type="submit" class="btn btn-primary">Add Local Government Area</button>
                         </form>
                     </div>

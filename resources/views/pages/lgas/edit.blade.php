@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Edit Ward <b></b>
+            Update Local Government Area <b></b>
         </h2>
     </x-slot>
 
@@ -17,34 +17,35 @@
                 @endif
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header"> Edit Ward </div>
+                        <div class="card-header"> Update Local Government Area </div>
                         <div class="card-body">
-                            <form action="{{ url('wards/update/' . $wards->id) }}" method="POST">
+                            <form action="{{ url('lgas/update/' . $edit_lgas->id) }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="wards" class="form-label">Update Wards:</label>
-                                    <input type="text" name="name" class="form-control" id="wards"
-                                        aria-describedby="wards" value="{{ $wards->name }}">
+                                    <label for="lgas" class="form-label"> Local Government Area:</label>
+                                    <input type="text" name="name" class="form-control" id="lgas"
+                                        aria-describedby="lgas" value="{{ $edit_lgas->name }}">
                                     @error('name')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
                                     <br>
                                     <div class="controls">
-                                        <select name="lga_id" class="form-control">
-                                            <option value="" selected="" disabled="">Select Local Government Area</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    {{ $category->id == $edit_subcategory->lga_id ? 'selected' : '' }}>
-                                                    {{ $category->category_name }}</option>
+                                        <label for="phone" class="form-label">State:</label>
+                                        <select name="state_id" class="form-control">
+                                            <option value="" selected="" disabled="">Select State</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{ $state->id }}"
+                                                    {{ $state->id == $edit_lgas->state_id ? 'selected' : '' }}>
+                                                    {{ $state->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('lga_id')
+                                        @error('state_id')
                                             <span class="text-danger"> {{ $message }} </span>
                                         @enderror
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <a class="btn btn-info" href="{{ route('states') }}">Back</a>
+                                <a class="btn btn-info" href="{{ route('lgas') }}">Back</a>
                             </form>
                         </div>
                     </div>
